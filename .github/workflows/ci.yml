@@ -37,7 +37,9 @@ jobs:
           composer require "huangdijia/laravel-youdu-message:*@dev"
 
       - name: Test Artisan
-        run: php artisan
+        run: |
+          cd $HOME/webapp
+          php artisan
 
       # - name: Test Command
       #   env:
