@@ -48,4 +48,4 @@ jobs:
           echo "YOUDU_BUIN=${YOUDU_BUIN}" >> .env
           echo "YOUDU_APP_ID=${YOUDU_APP_ID}" >> .env
           echo "YOUDU_AES_KEY=${YOUDU_AES_KEY}" >> .env
-          php artisan youdu:send "test" --to=$YOUDU_RECEIVER
+          php artisan youdu:send "test from github actions" --to=$YOUDU_RECEIVER
