@@ -1,12 +1,12 @@
 {
-    "name": "huangdijia/laravel-youdu",
+    "name": "huangdijia/laravel-youdu-message",
     "description": "youdu for laravel",
     "type": "library",
     "keywords": [
         "laravel",
         "youdu"
     ],
-    "homepage": "https://github.com/huangdijia/laravel-youdu",
+    "homepage": "https://github.com/huangdijia/laravel-youdu-message",
     "license": "MIT",
     "authors": [
         {
