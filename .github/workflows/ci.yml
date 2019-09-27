@@ -22,9 +22,9 @@ jobs:
 
         with:
           php-version: ${{ matrix.php-versions }}
-          extension-csv: mbstring, xdebug #optional
-          ini-values-csv: "post_max_size=256M, short_open_tag=On" #optional
-          coverage: xdebug #optional
+          extension-csv: mbstring, xdebug, xml
+          ini-values-csv: "post_max_size=256M, short_open_tag=On"
+          coverage: xdebug
 
       - name: Check PHP Version
         run: php -v
