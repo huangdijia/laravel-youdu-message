@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Installing php
+      - name: Installing PHP
         uses: shivammathur/setup-php@master
         with:
           php-version: 7.3
@@ -20,23 +20,23 @@ jobs:
       - name: Check Composer Version
         run: composer -V
 
-      - name: Check php extensions
+      - name: Check PHP Extensions
         run: php -m
 
       - uses: actions/checkout@v1
 
-      - name: Init webapp
+      - name: Init Webapp
         run: |
           cd $HOME
           composer create-project --prefer-dist laravel/laravel webapp
 
-      - name: Install laravel-youdu-message
+      - name: Install Laravel-youdu-message
         run: |
           cd $HOME/webapp
           composer config repositories.laravel-youdu-message path /home/runner/work/laravel-youdu-message/*
           composer require "huangdijia/laravel-youdu-message:*@dev"
 
-      - name: Send Message
+      - name: Test Command
         env:
           YOUDU_API: ${{secrets.YOUDU_API}}
           YOUDU_BUIN: ${{secrets.YOUDU_BUIN}}
