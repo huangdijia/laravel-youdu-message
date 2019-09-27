@@ -44,8 +44,9 @@ jobs:
           YOUDU_AES_KEY: ${{secrets.YOUDU_AES_KEY}}
           YOUDU_RECEIVER: ${{secrets.YOUDU_RECEIVER}}
         run: |
-          echo "YOUDU_API=${YOUDU_API}" >> .env
-          echo "YOUDU_BUIN=${YOUDU_BUIN}" >> .env
-          echo "YOUDU_APP_ID=${YOUDU_APP_ID}" >> .env
-          echo "YOUDU_AES_KEY=${YOUDU_AES_KEY}" >> .env
+          cd $HOME/webapp
+          echo "YOUDU_API=$YOUDU_API" >> .env
+          echo "YOUDU_BUIN=$YOUDU_BUIN" >> .env
+          echo "YOUDU_APP_ID=$YOUDU_APP_ID" >> .env
+          echo "YOUDU_AES_KEY=$YOUDU_AES_KEY" >> .env
           php artisan youdu:send "test from github actions" --to=$YOUDU_RECEIVER
