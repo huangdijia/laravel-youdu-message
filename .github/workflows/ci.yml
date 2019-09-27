@@ -4,15 +4,27 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.operating-system }}
+
+    strategy:
+      max-parallel: 15
+      matrix:
+        operating-system: [ubuntu-latest, windows-latest, macOS-latest]
+        php-versions: ["5.6", "7.0", "7.1", "7.2", "7.3"]
+    name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
 
     steps:
-      - name: Installing PHP
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Install PHP
         uses: shivammathur/setup-php@master
+
         with:
-          php-version: 7.3
-          extension-csv: mbstring, xdebug
-          ini-values-csv: "post_max_size=256M, short_open_tag=On"
+          php-version: ${{ matrix.php-versions }}
+          extension-csv: mbstring, xdebug #optional
+          ini-values-csv: "post_max_size=256M, short_open_tag=On" #optional
+          coverage: xdebug #optional
 
       - name: Check PHP Version
         run: php -v
@@ -40,18 +52,3 @@ jobs:
         run: |
           cd $HOME/webapp
           php artisan
-
-      # - name: Test Command
-      #   env:
-      #     YOUDU_API: ${{secrets.YOUDU_API}}
-      #     YOUDU_BUIN: ${{secrets.YOUDU_BUIN}}
-      #     YOUDU_APP_ID: ${{secrets.YOUDU_APP_ID}}
-      #     YOUDU_AES_KEY: ${{secrets.YOUDU_AES_KEY}}
-      #     YOUDU_RECEIVER: ${{secrets.YOUDU_RECEIVER}}
-      #   run: |
-      #     cd $HOME/webapp
-      #     echo "YOUDU_API=$YOUDU_API" >> .env
-      #     echo "YOUDU_BUIN=$YOUDU_BUIN" >> .env
-      #     echo "YOUDU_APP_ID=$YOUDU_APP_ID" >> .env
-      #     echo "YOUDU_AES_KEY=$YOUDU_AES_KEY" >> .env
-      #     php artisan youdu:send "test from github actions" --to=$YOUDU_RECEIVER
