@@ -1,17 +1,51 @@
-name: CI
+name: YOUDU MESSAGE TEST
 
 on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+      - name: Installing php
+        uses: shivammathur/setup-php@master
+        with:
+          php-version: 7.3
+          extension-csv: mbstring, xdebug
+          ini-values-csv: "post_max_size=256M, short_open_tag=On"
+
+      - name: Check PHP Version
+        run: php -v
+
+      - name: Check Composer Version
+        run: composer -V
+
+      - name: Check php extensions
+        run: php -m
+
+      - uses: actions/checkout@v1
+
+      - name: Init webapp
+        run: |
+          cd $HOME
+          composer create-project --prefer-dist laravel/laravel webapp
+
+      - name: Install laravel-youdu-message
+        run: |
+          cd $HOME/webapp
+          composer config repositories.laravel-youdu-message path /home/runner/work/laravel-youdu-message/*
+          composer require "huangdijia/laravel-youdu-message:*@dev"
+
+      - name: Send Message
+        env:
+          YOUDU_API: ${{secrets.YOUDU_API}}
+          YOUDU_BUIN: ${{secrets.YOUDU_BUIN}}
+          YOUDU_APP_ID: ${{secrets.YOUDU_APP_ID}}
+          YOUDU_AES_KEY: ${{secrets.YOUDU_AES_KEY}}
+          YOUDU_RECEIVER: ${{secrets.YOUDU_RECEIVER}}
+        run: |
+          echo "YOUDU_API=${YOUDU_API}" >> .env
+          echo "YOUDU_BUIN=${YOUDU_BUIN}" >> .env
+          echo "YOUDU_APP_ID=${YOUDU_APP_ID}" >> .env
+          echo "YOUDU_AES_KEY=${YOUDU_AES_KEY}" >> .env
+          php artisan youdu:send "test" --to=$YOUDU_RECEIVER
