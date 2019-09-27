@@ -25,17 +25,19 @@ jobs:
 
       - uses: actions/checkout@v1
 
-      - name: Init Webapp
+      - name: Build Laravel App
         run: |
           cd $HOME
           composer create-project --prefer-dist laravel/laravel webapp
 
-      - name: Install Laravel-youdu-message
+      - name: Install Package
         run: |
           cd $HOME/webapp
           composer config repositories.laravel-youdu-message path /home/runner/work/laravel-youdu-message/*
           composer require "huangdijia/laravel-youdu-message:*@dev"
-          php artisan
+
+      - name: Test Artisan
+        run: php artisan
 
       # - name: Test Command
       #   env:
