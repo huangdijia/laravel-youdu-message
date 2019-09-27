@@ -35,18 +35,19 @@ jobs:
           cd $HOME/webapp
           composer config repositories.laravel-youdu-message path /home/runner/work/laravel-youdu-message/*
           composer require "huangdijia/laravel-youdu-message:*@dev"
+          php artisan
 
-      - name: Test Command
-        env:
-          YOUDU_API: ${{secrets.YOUDU_API}}
-          YOUDU_BUIN: ${{secrets.YOUDU_BUIN}}
-          YOUDU_APP_ID: ${{secrets.YOUDU_APP_ID}}
-          YOUDU_AES_KEY: ${{secrets.YOUDU_AES_KEY}}
-          YOUDU_RECEIVER: ${{secrets.YOUDU_RECEIVER}}
-        run: |
-          cd $HOME/webapp
-          echo "YOUDU_API=$YOUDU_API" >> .env
-          echo "YOUDU_BUIN=$YOUDU_BUIN" >> .env
-          echo "YOUDU_APP_ID=$YOUDU_APP_ID" >> .env
-          echo "YOUDU_AES_KEY=$YOUDU_AES_KEY" >> .env
-          php artisan youdu:send "test from github actions" --to=$YOUDU_RECEIVER
+      # - name: Test Command
+      #   env:
+      #     YOUDU_API: ${{secrets.YOUDU_API}}
+      #     YOUDU_BUIN: ${{secrets.YOUDU_BUIN}}
+      #     YOUDU_APP_ID: ${{secrets.YOUDU_APP_ID}}
+      #     YOUDU_AES_KEY: ${{secrets.YOUDU_AES_KEY}}
+      #     YOUDU_RECEIVER: ${{secrets.YOUDU_RECEIVER}}
+      #   run: |
+      #     cd $HOME/webapp
+      #     echo "YOUDU_API=$YOUDU_API" >> .env
+      #     echo "YOUDU_BUIN=$YOUDU_BUIN" >> .env
+      #     echo "YOUDU_APP_ID=$YOUDU_APP_ID" >> .env
+      #     echo "YOUDU_AES_KEY=$YOUDU_AES_KEY" >> .env
+      #     php artisan youdu:send "test from github actions" --to=$YOUDU_RECEIVER
