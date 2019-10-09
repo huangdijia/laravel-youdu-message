@@ -1,4 +1,4 @@
-# laravel-youdu
+# laravel-youdu-message
 
 ## Installation
 
@@ -7,7 +7,7 @@
 composer
 
 ~~~bash
-composer require huangdijia/laravel-youdu
+composer require huangdijia/laravel-youdu-message
 ~~~
 
 publish
