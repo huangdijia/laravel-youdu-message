@@ -1,6 +1,6 @@
 # laravel-youdu-message
 
-> 已迁移至 [laravel-youdu](https://github.com/huangdijia/laravel-youdu)
+> 此项目停止维护，请使用 [laravel-youdu](https://github.com/huangdijia/laravel-youdu)
 
 [![Latest Stable Version](https://poser.pugx.org/huangdijia/laravel-youdu-message/version.png)](https://packagist.org/packages/huangdijia/laravel-youdu-message)
 [![Total Downloads](https://poser.pugx.org/huangdijia/laravel-youdu-message/d/total.png)](https://packagist.org/packages/huangdijia/laravel-youdu-message)
