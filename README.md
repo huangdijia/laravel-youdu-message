@@ -1,5 +1,7 @@
 # laravel-youdu-message
 
+> 已迁移至 [laravel-youdu](https://github.com/huangdijia/laravel-youdu)
+
 [![Latest Stable Version](https://poser.pugx.org/huangdijia/laravel-youdu-message/version.png)](https://packagist.org/packages/huangdijia/laravel-youdu-message)
 [![Total Downloads](https://poser.pugx.org/huangdijia/laravel-youdu-message/d/total.png)](https://packagist.org/packages/huangdijia/laravel-youdu-message)
 [![GitHub license](https://img.shields.io/github/license/huangdijia/laravel-youdu-message)](https://github.com/huangdijia/laravel-youdu-message)
